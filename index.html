@@ -302,7 +302,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
-      min-width: 920px;
+      min-width: 1120px;
     }
 
     th, td {
@@ -366,6 +366,41 @@
       color: var(--blue);
       font-size: 12px;
       font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .ability-cell {
+      min-width: 220px;
+    }
+
+    .category-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(31, 157, 106, 0.1);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+
+    .ability-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ability-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f1f5fb;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
       white-space: nowrap;
     }
 
@@ -476,6 +511,7 @@
           <thead>
             <tr>
               <th>厂商 / 模型</th>
+              <th>类别 / 能力</th>
               <th>上下文</th>
               <th>输入价</th>
               <th>输出价</th>
@@ -506,6 +542,8 @@
         input: 9.0,
         output: 54.0,
         context: "262K",
+        category: "语言 / 推理模型",
+        capabilities: ["文本生成", "复杂推理", "代码", "指令遵循", "Agent"],
         note: "中国内地旗舰模型，页面展示最低输入/输出价格",
         sourceName: "阿里云百炼模型列表",
         sourceUrl: "https://help.aliyun.com/zh/model-studio/models"
@@ -516,6 +554,8 @@
         input: 6.0,
         output: 24.0,
         context: "119K",
+        category: "原生多模态模型",
+        capabilities: ["文本", "图像", "视频", "音频", "跨模态生成"],
         note: "官网展示价区间下限换算为每百万 Token",
         sourceName: "百度千帆大模型平台产品页",
         sourceUrl: "https://cloud.baidu.com/product-s/qianfan_home"
@@ -526,6 +566,8 @@
         input: 3.975,
         output: 15.9,
         context: "128K",
+        category: "语言 / 深度思考模型",
+        capabilities: ["文本生成", "深度思考", "代码", "工具调用", "长上下文"],
         note: "首档 0-32K 输入",
         sourceName: "腾讯混元生文计费概述",
         sourceUrl: "https://cloud.tencent.com/document/product/1729/97731"
@@ -536,6 +578,8 @@
         input: 3.2,
         output: 16.0,
         context: "256K",
+        category: "多模态推理模型",
+        capabilities: ["文本", "图像", "视频", "深度思考", "工具调用"],
         note: "首档 0-32K 输入",
         sourceName: "火山引擎模型费用页",
         sourceUrl: "https://www.volcengine.com/docs/84458/1585097"
@@ -546,6 +590,8 @@
         input: 6.5,
         output: 27.0,
         context: "256K",
+        category: "原生多模态 Agent 模型",
+        capabilities: ["视觉理解", "代码", "长程任务", "Agent Swarm", "工具调用"],
         note: "官网模型卡公开价",
         sourceName: "Kimi 开放平台首页",
         sourceUrl: "https://platform.moonshot.cn/"
@@ -556,6 +602,8 @@
         input: 2.1,
         output: 8.4,
         context: "204.8K",
+        category: "语言 / Agent 模型",
+        capabilities: ["文本生成", "代码", "复杂任务", "Agent Teams", "工具搜索"],
         note: "按量计费",
         sourceName: "MiniMax 按量计费",
         sourceUrl: "https://platform.minimaxi.com/docs/guides/pricing-paygo"
@@ -566,6 +614,8 @@
         input: 7.0,
         output: 21.0,
         context: "1M",
+        category: "语言 / 旗舰推理模型",
+        capabilities: ["文本生成", "深度思考", "流式输出", "函数调用", "结构化输出"],
         note: "国内首档 0<Token<=256K：输入 7 元、命中缓存输入 1.4 元、输出 21 元；256K<Token<=1M 价格翻倍",
         sourceName: "Xiaomi MiMo 定价与限速",
         sourceUrl: "https://platform.xiaomimimo.com/docs/pricing"
@@ -576,6 +626,8 @@
         input: 0.7,
         output: 2.1,
         context: "256K",
+        category: "通用大语言模型",
+        capabilities: ["文本生成", "深度思考", "流式输出", "函数调用", "联网搜索"],
         note: "国内价格：输入 0.7 元、命中缓存输入 0.07 元、输出 2.1 元 / 百万 Token；缓存写入限时免费",
         sourceName: "Xiaomi MiMo 定价与限速",
         sourceUrl: "https://platform.xiaomimimo.com/docs/pricing"
@@ -586,6 +638,8 @@
         input: 12.0,
         output: 24.0,
         context: "1M",
+        category: "语言 / 推理模型",
+        capabilities: ["文本生成", "长上下文", "代码", "工具调用", "结构化输出"],
         note: "按缓存未命中口径",
         sourceName: "DeepSeek 模型与价格",
         sourceUrl: "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
@@ -596,6 +650,8 @@
         input: 1.0,
         output: 2.0,
         context: "1M",
+        category: "语言 / 轻量推理模型",
+        capabilities: ["文本生成", "长上下文", "代码", "工具调用", "结构化输出"],
         note: "按缓存未命中口径，额外补充的同厂轻量参考",
         sourceName: "DeepSeek 模型与价格",
         sourceUrl: "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
@@ -606,6 +662,8 @@
         input: 6.0,
         output: 24.0,
         context: "200K",
+        category: "语言 / Agent 编程模型",
+        capabilities: ["文本生成", "代码", "长程任务", "自主 Agent", "工程交付"],
         note: "智谱官方定价页，首档输入长度 [0,32) 千 Tokens",
         sourceName: "智谱 BigModel 产品价格",
         sourceUrl: "https://bigmodel.cn/pricing"
@@ -699,6 +757,10 @@
           <td class="model-cell">
             <div class="model-provider">${item.provider}</div>
             <div class="model-name">${item.model}</div>
+          </td>
+          <td class="ability-cell">
+            <div class="category-chip">${item.category}</div>
+            <div class="ability-list">${item.capabilities.map(capability => `<span class="ability-tag">${capability}</span>`).join("")}</div>
           </td>
           <td><span class="context-pill">${item.context}</span></td>
           <td><span class="compact-value">${item.input} 元</span><span class="unit">/ 百万 Token</span></td>
