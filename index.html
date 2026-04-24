@@ -302,7 +302,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
-      min-width: 1120px;
+      min-width: 1380px;
     }
 
     th, td {
@@ -405,6 +405,13 @@
     }
 
     .note-cell {
+      max-width: 280px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .plan-cell {
       max-width: 280px;
       color: var(--muted);
       font-size: 13px;
@@ -515,7 +522,10 @@
               <th>上下文</th>
               <th>输入价</th>
               <th>输出价</th>
+              <th>缓存读取</th>
+              <th>缓存写入</th>
               <th>统一任务成本</th>
+              <th>Coding Plan 定价</th>
               <th>说明</th>
             </tr>
           </thead>
@@ -541,105 +551,148 @@
         model: "Qwen3.6-Max-Preview",
         input: 9.0,
         output: 54.0,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "262K",
         category: "语言 / 推理模型",
         capabilities: ["文本生成", "复杂推理", "代码", "指令遵循", "Agent"],
+        codingPlan: "百炼 Coding Plan：Pro ¥200/月，首月 ¥39.9、次月 ¥100；Lite 旧/活动价 ¥40/月，首月 ¥7.9",
         note: "中国内地旗舰模型，页面展示最低输入/输出价格",
         sourceName: "阿里云百炼模型列表",
-        sourceUrl: "https://help.aliyun.com/zh/model-studio/models"
+        sourceUrl: "https://help.aliyun.com/zh/model-studio/models",
+        codingPlanSourceName: "阿里云 Coding Plan 说明",
+        codingPlanSourceUrl: "https://developer.aliyun.com/article/1729595"
       },
       {
         provider: "百度智能云",
         model: "ERNIE 5.0",
         input: 6.0,
         output: 24.0,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "119K",
         category: "原生多模态模型",
         capabilities: ["文本", "图像", "视频", "音频", "跨模态生成"],
+        codingPlan: "千帆 Coding Plan：Lite ¥40/月，首月 ¥7.9、次月 ¥20；Pro ¥200/月，首月 ¥39.9、次月 ¥100",
         note: "官网展示价区间下限换算为每百万 Token",
         sourceName: "百度千帆大模型平台产品页",
-        sourceUrl: "https://cloud.baidu.com/product-s/qianfan_home"
+        sourceUrl: "https://cloud.baidu.com/product-s/qianfan_home",
+        codingPlanSourceName: "百度千帆 Coding Plan",
+        codingPlanSourceUrl: "https://cloud.baidu.com/product/codingplan.html"
       },
       {
         provider: "腾讯云",
         model: "Tencent HY 2.0 Think",
         input: 3.975,
         output: 15.9,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "128K",
         category: "语言 / 深度思考模型",
         capabilities: ["文本生成", "深度思考", "代码", "工具调用", "长上下文"],
+        codingPlan: "腾讯云 Coding Plan：Lite ¥40/月，首月 ¥7.9、次月 ¥20；Pro ¥200/月，首月 ¥39.9、次月 ¥100",
         note: "首档 0-32K 输入",
         sourceName: "腾讯混元生文计费概述",
-        sourceUrl: "https://cloud.tencent.com/document/product/1729/97731"
+        sourceUrl: "https://cloud.tencent.com/document/product/1729/97731",
+        codingPlanSourceName: "腾讯云 Coding Plan 报道",
+        codingPlanSourceUrl: "https://www.ithome.com/0/927/699.htm"
       },
       {
         provider: "字节火山引擎",
         model: "Doubao-Seed-2.0-Pro",
         input: 3.2,
         output: 16.0,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "256K",
         category: "多模态推理模型",
         capabilities: ["文本", "图像", "视频", "深度思考", "工具调用"],
+        codingPlan: "方舟 Coding Plan：Lite ¥40/月，首月约 ¥8.91；Pro ¥200/月，首月约 ¥44.91",
         note: "首档 0-32K 输入",
         sourceName: "火山引擎模型费用页",
-        sourceUrl: "https://www.volcengine.com/docs/84458/1585097"
+        sourceUrl: "https://www.volcengine.com/docs/84458/1585097",
+        codingPlanSourceName: "火山方舟 Coding Plan",
+        codingPlanSourceUrl: "https://developer.volcengine.com/articles/7595502342175195187"
       },
       {
         provider: "月之暗面",
         model: "Kimi K2.6",
         input: 6.5,
         output: 27.0,
+        cacheRead: 1.1,
+        cacheWrite: "—",
         context: "256K",
         category: "原生多模态 Agent 模型",
         capabilities: ["视觉理解", "代码", "长程任务", "Agent Swarm", "工具调用"],
+        codingPlan: "Kimi Code/会员：Andante ¥49/月、Moderato ¥99/月、Allegretto ¥199/月、Allegro ¥699/月",
         note: "官网模型卡公开价",
         sourceName: "Kimi 开放平台首页",
-        sourceUrl: "https://platform.moonshot.cn/"
+        sourceUrl: "https://platform.moonshot.cn/",
+        codingPlanSourceName: "Kimi Coding Plan 对比",
+        codingPlanSourceUrl: "https://codingplan.org/"
       },
       {
         provider: "MiniMax",
         model: "MiniMax-M2.7",
         input: 2.1,
         output: 8.4,
+        cacheRead: 0.42,
+        cacheWrite: 2.625,
         context: "204.8K",
         category: "语言 / Agent 模型",
         capabilities: ["文本生成", "代码", "复杂任务", "Agent Teams", "工具搜索"],
-        note: "按量计费",
+        codingPlan: "MiniMax Token Plan：标准版 ¥29/49/119 月；极速版 ¥98/199/899 月",
+        note: "按量计费；缓存读取 0.42 元、缓存写入 2.625 元 / 百万 Token",
         sourceName: "MiniMax 按量计费",
-        sourceUrl: "https://platform.minimaxi.com/docs/guides/pricing-paygo"
+        sourceUrl: "https://platform.minimaxi.com/docs/guides/pricing-paygo",
+        codingPlanSourceName: "MiniMax Token Plan",
+        codingPlanSourceUrl: "https://platform.minimaxi.com/docs/guides/pricing-tokenplan"
       },
       {
         provider: "小米",
         model: "MiMo-V2.5-Pro",
         input: 7.0,
         output: 21.0,
+        cacheRead: 1.4,
+        cacheWrite: "限时免费",
         context: "1M",
         category: "语言 / 旗舰推理模型",
         capabilities: ["文本生成", "深度思考", "流式输出", "函数调用", "结构化输出"],
+        codingPlan: "MiMo Token Plan：Lite ¥39/月、Standard ¥99/月、Pro ¥329/月、Max ¥659/月；首购 88 折",
         note: "国内首档 0<Token<=256K：输入 7 元、命中缓存输入 1.4 元、输出 21 元；256K<Token<=1M 价格翻倍",
         sourceName: "Xiaomi MiMo 定价与限速",
-        sourceUrl: "https://platform.xiaomimimo.com/docs/pricing"
+        sourceUrl: "https://platform.xiaomimimo.com/docs/pricing",
+        codingPlanSourceName: "Xiaomi MiMo Token Plan",
+        codingPlanSourceUrl: "https://www.ithome.com/0/935/666.htm"
       },
       {
         provider: "小米",
         model: "MiMo-V2-Flash",
         input: 0.7,
         output: 2.1,
+        cacheRead: 0.07,
+        cacheWrite: "限时免费",
         context: "256K",
         category: "通用大语言模型",
         capabilities: ["文本生成", "深度思考", "流式输出", "函数调用", "联网搜索"],
+        codingPlan: "MiMo Token Plan：Lite ¥39/月、Standard ¥99/月、Pro ¥329/月、Max ¥659/月；首购 88 折",
         note: "国内价格：输入 0.7 元、命中缓存输入 0.07 元、输出 2.1 元 / 百万 Token；缓存写入限时免费",
         sourceName: "Xiaomi MiMo 定价与限速",
-        sourceUrl: "https://platform.xiaomimimo.com/docs/pricing"
+        sourceUrl: "https://platform.xiaomimimo.com/docs/pricing",
+        codingPlanSourceName: "Xiaomi MiMo Token Plan",
+        codingPlanSourceUrl: "https://www.ithome.com/0/935/666.htm"
       },
       {
         provider: "DeepSeek",
         model: "DeepSeek-V4-Pro",
         input: 12.0,
         output: 24.0,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "1M",
         category: "语言 / 推理模型",
         capabilities: ["文本生成", "长上下文", "代码", "工具调用", "结构化输出"],
+        codingPlan: "无",
         note: "按缓存未命中口径",
         sourceName: "DeepSeek 模型与价格",
         sourceUrl: "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
@@ -649,9 +702,12 @@
         model: "DeepSeek-V4-Flash",
         input: 1.0,
         output: 2.0,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "1M",
         category: "语言 / 轻量推理模型",
         capabilities: ["文本生成", "长上下文", "代码", "工具调用", "结构化输出"],
+        codingPlan: "无",
         note: "按缓存未命中口径，额外补充的同厂轻量参考",
         sourceName: "DeepSeek 模型与价格",
         sourceUrl: "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
@@ -661,12 +717,17 @@
         model: "GLM-5.1",
         input: 6.0,
         output: 24.0,
+        cacheRead: "—",
+        cacheWrite: "—",
         context: "200K",
         category: "语言 / Agent 编程模型",
         capabilities: ["文本生成", "代码", "长程任务", "自主 Agent", "工程交付"],
+        codingPlan: "GLM Coding Plan：Lite ¥49/月、Pro ¥149/月、Max ¥469/月",
         note: "智谱官方定价页，首档输入长度 [0,32) 千 Tokens",
         sourceName: "智谱 BigModel 产品价格",
-        sourceUrl: "https://bigmodel.cn/pricing"
+        sourceUrl: "https://bigmodel.cn/pricing",
+        codingPlanSourceName: "智谱 GLM Coding Plan",
+        codingPlanSourceUrl: "https://finance.sina.com.cn/jjxw/2026-04-15/doc-inhuqsme4665738.shtml"
       }
     ];
 
@@ -772,7 +833,10 @@
           <td><span class="context-pill">${escapeHtml(item.context)}</span></td>
           <td><span class="compact-value">${item.input} 元</span><span class="unit">/ 百万 Token</span></td>
           <td><span class="compact-value">${item.output} 元</span><span class="unit">/ 百万 Token</span></td>
+          <td><span class="compact-value">${escapeHtml(item.cacheRead)}</span><span class="unit">/ 百万 Token</span></td>
+          <td><span class="compact-value">${escapeHtml(item.cacheWrite)}</span><span class="unit">/ 百万 Token</span></td>
           <td><span class="compact-value">${item.cost} 元</span><span class="unit">32K + 8K</span></td>
+          <td class="plan-cell">${escapeHtml(item.codingPlan)}</td>
           <td class="note-cell">${escapeHtml(item.note)}</td>
         </tr>
       `).join("");
@@ -785,6 +849,10 @@
         if (!seen.has(item.sourceUrl)) {
           seen.add(item.sourceUrl);
           uniq.push(item);
+        }
+        if (item.codingPlanSourceUrl && !seen.has(item.codingPlanSourceUrl)) {
+          seen.add(item.codingPlanSourceUrl);
+          uniq.push({ sourceName: item.codingPlanSourceName, sourceUrl: item.codingPlanSourceUrl });
         }
       });
 
