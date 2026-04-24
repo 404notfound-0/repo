@@ -440,7 +440,8 @@
         <h1>精简版网页可视化</h1>
         <p class="subtitle">
           口径统一为“每家只保留 1 个当前最新主力模型”，并额外补入
-          <strong>DeepSeek V4 Flash</strong> 作为同厂轻量价格参考。
+          <strong>DeepSeek V4 Flash</strong> 和
+          <strong>小米 MiMo-V2-Flash</strong> 作为同厂轻量价格参考。
           图中同时展示官方输入价、输出价，以及统一任务口径
           <strong>32K 输入 + 8K 输出</strong> 的估算成本，便于直接横向比较。
         </p>
@@ -469,7 +470,7 @@
 
     <section class="panel section" style="margin-bottom: 20px;">
       <h2>详细明细</h2>
-      <p class="section-copy">这一版只保留各家最新主力模型，另加一项 DeepSeek V4 Flash 作为补充参考。</p>
+      <p class="section-copy">这一版只保留各家最新主力模型，另加 DeepSeek V4 Flash 与小米 MiMo-V2-Flash 作为补充参考。</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -486,13 +487,13 @@
         </table>
       </div>
       <div class="footer-note">
-        备注：DeepSeek V4 Flash 不是“每家只取一个”的主榜成员，但按你的要求额外加入作为同厂低价位参考，所以页面中会出现 9 条记录。
+        备注：DeepSeek V4 Flash 与小米 MiMo-V2-Flash 不是“每家只取一个”的主榜成员，但按你的要求额外加入作为同厂低价位参考。小米 MiMo-V2.5-Pro 美元价格按 1 USD ≈ 7.25 CNY 粗略换算，仅用于同页横向展示。
       </div>
     </section>
 
     <section class="panel section">
-      <h2>官方来源</h2>
-      <p class="section-copy">以下链接均为这次整理时使用的官方页面。</p>
+      <h2>公开来源</h2>
+      <p class="section-copy">以下链接为这次整理时使用的官方页面、模型平台或公开报道。</p>
       <div class="source-list" id="sources"></div>
     </section>
   </div>
@@ -560,6 +561,26 @@
         sourceUrl: "https://platform.minimaxi.com/docs/guides/pricing-paygo"
       },
       {
+        provider: "小米",
+        model: "MiMo-V2.5-Pro",
+        input: 7.25,
+        output: 21.75,
+        context: "1M",
+        note: "旗舰 agent / coding 模型；OpenRouter 公开价 $1 输入 / $3 输出，按 1 USD≈7.25 CNY 换算",
+        sourceName: "OpenRouter MiMo-V2.5-Pro",
+        sourceUrl: "https://openrouter.ai/xiaomi/mimo-v2.5-pro"
+      },
+      {
+        provider: "小米",
+        model: "MiMo-V2-Flash",
+        input: 0.7,
+        output: 2.1,
+        context: "256K",
+        note: "309B 总参数、15B 激活参数 MoE；公开报道披露 API 输入 0.7 元、输出 2.1 元 / 百万 Token",
+        sourceName: "每日经济新闻：小米 MiMo-V2-Flash 开源",
+        sourceUrl: "https://www.nbd.com.cn/articles/2025-12-17/4183917.html"
+      },
+      {
         provider: "DeepSeek",
         model: "DeepSeek-V4-Pro",
         input: 12.0,
@@ -613,7 +634,7 @@
         <div class="metric">
           <div class="metric-label">样本数量</div>
           <div class="metric-value">${data.length}</div>
-          <div class="metric-note">8 家最新主力模型 + 额外补充 DeepSeek V4 Flash</div>
+          <div class="metric-note">9 家最新主力模型 + 额外补充 DeepSeek / 小米 Flash</div>
         </div>
         <div class="metric">
           <div class="metric-label">最高输出价</div>
