@@ -682,6 +682,13 @@
     const costMax = Math.max(...data.map(item => item.cost));
 
     const currency = value => `${Number(value).toFixed(value % 1 === 0 ? 0 : value < 10 ? 3 : 1)} 元`;
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
 
     function renderSummary() {
       const highestOutput = [...data].sort((a, b) => b.output - a.output)[0];
@@ -697,17 +704,17 @@
         <div class="metric">
           <div class="metric-label">最高输出价</div>
           <div class="metric-value">${highestOutput.output} 元</div>
-          <div class="metric-note">${highestOutput.provider} ${highestOutput.model}</div>
+          <div class="metric-note">${escapeHtml(highestOutput.provider)} ${escapeHtml(highestOutput.model)}</div>
         </div>
         <div class="metric">
           <div class="metric-label">最低统一任务成本</div>
           <div class="metric-value">${lowestCost.cost} 元</div>
-          <div class="metric-note">${lowestCost.provider} ${lowestCost.model}</div>
+          <div class="metric-note">${escapeHtml(lowestCost.provider)} ${escapeHtml(lowestCost.model)}</div>
         </div>
         <div class="metric">
           <div class="metric-label">最高统一任务成本</div>
           <div class="metric-value">${highestCost.cost} 元</div>
-          <div class="metric-note">${highestCost.provider} ${highestCost.model}</div>
+          <div class="metric-note">${escapeHtml(highestCost.provider)} ${escapeHtml(highestCost.model)}</div>
         </div>
       `;
     }
@@ -718,8 +725,8 @@
         <div class="row">
           <div class="row-head">
             <div>
-              <div class="row-title">${item.provider} ${item.model}</div>
-              <div class="row-subtitle">上下文 ${item.context} · 输出/输入倍率 ${item.ratio}x</div>
+              <div class="row-title">${escapeHtml(item.provider)} ${escapeHtml(item.model)}</div>
+              <div class="row-subtitle">上下文 ${escapeHtml(item.context)} · 输出/输入倍率 ${item.ratio}x</div>
             </div>
             <div class="price-pair">输入 ${item.input} 元 · 输出 ${item.output} 元</div>
           </div>
@@ -741,12 +748,12 @@
       document.getElementById("cost-ranking").innerHTML = sorted.map(item => `
         <div class="rank-card">
           <div class="topline">
-            <div class="rank-model">${item.provider} ${item.model}</div>
+            <div class="rank-model">${escapeHtml(item.provider)} ${escapeHtml(item.model)}</div>
             ${item === highest ? '<span class="badge red">成本最高</span>' : item === lowest ? '<span class="badge green">成本最低</span>' : ""}
           </div>
           <div class="bar-label"><span>32K 输入 + 8K 输出</span><span>${item.cost} 元</span></div>
           <div class="bar-track" style="margin: 8px 0 10px;"><div class="bar cost" style="width:${(item.cost / costMax) * 100}%"></div></div>
-          <div class="rank-meta">${item.note}</div>
+          <div class="rank-meta">${escapeHtml(item.note)}</div>
         </div>
       `).join("");
     }
@@ -755,18 +762,18 @@
       document.getElementById("detail-table").innerHTML = data.map(item => `
         <tr>
           <td class="model-cell">
-            <div class="model-provider">${item.provider}</div>
-            <div class="model-name">${item.model}</div>
+            <div class="model-provider">${escapeHtml(item.provider)}</div>
+            <div class="model-name">${escapeHtml(item.model)}</div>
           </td>
           <td class="ability-cell">
-            <div class="category-chip">${item.category}</div>
-            <div class="ability-list">${item.capabilities.map(capability => `<span class="ability-tag">${capability}</span>`).join("")}</div>
+            <div class="category-chip">${escapeHtml(item.category)}</div>
+            <div class="ability-list">${item.capabilities.map(capability => `<span class="ability-tag">${escapeHtml(capability)}</span>`).join("")}</div>
           </td>
-          <td><span class="context-pill">${item.context}</span></td>
+          <td><span class="context-pill">${escapeHtml(item.context)}</span></td>
           <td><span class="compact-value">${item.input} 元</span><span class="unit">/ 百万 Token</span></td>
           <td><span class="compact-value">${item.output} 元</span><span class="unit">/ 百万 Token</span></td>
           <td><span class="compact-value">${item.cost} 元</span><span class="unit">32K + 8K</span></td>
-          <td class="note-cell">${item.note}</td>
+          <td class="note-cell">${escapeHtml(item.note)}</td>
         </tr>
       `).join("");
     }
@@ -782,7 +789,7 @@
       });
 
       document.getElementById("sources").innerHTML = uniq.map(item => `
-        <div><a href="${item.sourceUrl}" target="_blank" rel="noreferrer">${item.sourceName}</a></div>
+        <div><a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.sourceName)}</a></div>
       `).join("");
     }
 
