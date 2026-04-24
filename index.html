@@ -302,10 +302,11 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
+      min-width: 920px;
     }
 
     th, td {
-      padding: 14px 12px;
+      padding: 16px 12px;
       border-bottom: 1px solid var(--line);
       text-align: left;
       vertical-align: top;
@@ -323,6 +324,56 @@
     td strong {
       display: block;
       margin-bottom: 4px;
+    }
+
+    .model-cell {
+      min-width: 180px;
+    }
+
+    .model-provider {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .model-name {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .compact-value {
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .unit {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .context-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(50, 107, 255, 0.08);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .note-cell {
+      max-width: 280px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .source-list {
@@ -624,15 +675,15 @@
     function renderTable() {
       document.getElementById("detail-table").innerHTML = data.map(item => `
         <tr>
-          <td>
-            <strong>${item.provider}</strong>
-            ${item.model}
+          <td class="model-cell">
+            <div class="model-provider">${item.provider}</div>
+            <div class="model-name">${item.model}</div>
           </td>
-          <td>${item.context}</td>
-          <td>${item.input} 元 / 百万</td>
-          <td>${item.output} 元 / 百万</td>
-          <td>${item.cost} 元</td>
-          <td>${item.note}</td>
+          <td><span class="context-pill">${item.context}</span></td>
+          <td><span class="compact-value">${item.input} 元</span><span class="unit">/ 百万 Token</span></td>
+          <td><span class="compact-value">${item.output} 元</span><span class="unit">/ 百万 Token</span></td>
+          <td><span class="compact-value">${item.cost} 元</span><span class="unit">32K + 8K</span></td>
+          <td class="note-cell">${item.note}</td>
         </tr>
       `).join("");
     }
